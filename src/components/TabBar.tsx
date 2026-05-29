@@ -198,7 +198,7 @@ export const TabBar: React.FC = () => {
                     </span>
                   </motion.div>
                   <motion.img
-                    src={`${{import.meta.env.BASE_URL}}icons/arrow-right.svg`}
+                    src={`${import.meta.env.BASE_URL}icons/arrow-right.svg`}
                     alt=""
                     initial={false}
                     animate={
@@ -394,7 +394,7 @@ export const TabBar: React.FC = () => {
                         }}
                       />
                       <img
-                        src={`${{import.meta.env.BASE_URL}}icons/${icon}.svg`}
+                        src={`${import.meta.env.BASE_URL}icons/${icon}.svg`}
                         alt=""
                         style={{ width: 16, height: 16, display: 'block', position: 'relative', zIndex: 1 }}
                       />
@@ -664,7 +664,7 @@ export const TabBar: React.FC = () => {
                 }}
               />
               <img
-                src={`${{import.meta.env.BASE_URL}}icons/tab-search.svg`}
+                src={`${import.meta.env.BASE_URL}icons/tab-search.svg`}
                 alt=""
                 style={{ width: 16, height: 16, display: 'block', position: 'relative', zIndex: 1 }}
               />
