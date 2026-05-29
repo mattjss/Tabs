@@ -2,6 +2,31 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, LayoutGroup } from 'framer-motion'
 import { Shimmer } from './shimmer-text'
 
+/* ─── Web Audio ─────────────────────────────────────────────────────────── */
+let _tabAC: AudioContext | null = null
+function getAC() { if (!_tabAC) _tabAC = new AudioContext(); return _tabAC }
+function tone(freq: number, dur: number, type: OscillatorType = 'sine', vol = 0.08, when = 0, fEnd?: number) {
+  const ac = getAC(); if (ac.state === 'suspended') ac.resume()
+  const osc = ac.createOscillator(), g = ac.createGain()
+  osc.connect(g); g.connect(ac.destination)
+  osc.type = type; const t0 = ac.currentTime + when
+  osc.frequency.setValueAtTime(freq, t0)
+  if (fEnd !== undefined) osc.frequency.linearRampToValueAtTime(fEnd, t0 + dur)
+  g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(vol, t0 + 0.005)
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
+  osc.start(t0); osc.stop(t0 + dur + 0.02)
+}
+const sfx = {
+  tabOpen:    () => tone(587, 0.09, 'triangle', 0.07, 0, 740),
+  tabClose:   () => tone(740, 0.07, 'triangle', 0.06, 0, 587),
+  menuOpen:   () => { tone(523, 0.06, 'triangle', 0.06); tone(659, 0.08, 'sine', 0.055, 0.05) },
+  menuClose:  () => { tone(659, 0.05, 'triangle', 0.055); tone(523, 0.07, 'sine', 0.05, 0.04) },
+  searchOpen: () => tone(880, 0.08, 'sine', 0.055, 0, 1047),
+  searchClose:() => tone(1047, 0.07, 'sine', 0.05, 0, 880),
+  hover:      () => tone(1047, 0.022, 'triangle', 0.018),
+  select:     () => tone(784, 0.04, 'sine', 0.06),
+}
+
 /* ─── App data ─────────────────────────────────────────────────── */
 const recentApps = [
   { id: 'spotify', label: 'Spotify', icon: `${import.meta.env.BASE_URL}icons/app-green.svg`, color: '#10982b', stackIndex: 3, stackLeft: 27.43 },
@@ -91,6 +116,7 @@ export const TabBar: React.FC = () => {
   const handleRecentAppsClick = () => {
     if (menuOpen) setMenuOpen(false)
     if (searchOpen) setSearchOpen(false)
+    if (!open) sfx.tabOpen(); else sfx.tabClose()
     setOpen(!open)
   }
 
@@ -98,12 +124,14 @@ export const TabBar: React.FC = () => {
     e.stopPropagation()
     if (open) setOpen(false)
     if (searchOpen) setSearchOpen(false)
+    if (!menuOpen) sfx.menuOpen(); else sfx.menuClose()
     setMenuOpen(!menuOpen)
   }
 
   const handleSearchClick = () => {
     if (open) setOpen(false)
     if (menuOpen) setMenuOpen(false)
+    if (!searchOpen) sfx.searchOpen(); else sfx.searchClose()
     setSearchOpen(!searchOpen)
   }
 
@@ -362,7 +390,7 @@ export const TabBar: React.FC = () => {
                     <motion.div
                       key={icon}
                       onClick={icon === 'tab-menu' ? handleMenuToggle : undefined}
-                      onMouseEnter={() => setHoveredTab(icon)}
+                      onMouseEnter={() => { sfx.hover(); setHoveredTab(icon) }}
                       onMouseLeave={() => setHoveredTab(null)}
                       style={{
                         width: 24,
@@ -452,8 +480,8 @@ export const TabBar: React.FC = () => {
                               backgroundColor: { duration: 0.08 },
                             }
                       }
-                      onClick={() => setMenuOpen(false)}
-                      onMouseEnter={() => menuOpen && setHoveredItem(item.id)}
+                      onClick={() => { sfx.select(); setMenuOpen(false) }}
+                      onMouseEnter={() => { if (menuOpen) { sfx.hover(); setHoveredItem(item.id) } }}
                       onMouseLeave={() => setHoveredItem(null)}
                       style={{
                         position: 'absolute',
