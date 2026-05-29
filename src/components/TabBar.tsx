@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { motion, LayoutGroup, AnimatePresence } from 'framer-motion'
+import { motion, LayoutGroup } from 'framer-motion'
 import { Shimmer } from './shimmer-text'
 
 /* ─── App data ─────────────────────────────────────────────────── */
