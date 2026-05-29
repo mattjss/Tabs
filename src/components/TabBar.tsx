@@ -716,22 +716,6 @@ export const TabBar: React.FC = () => {
               >
                 {/* 1) Base label — stays fully visible after type-in animation */}
                 <span>What are you looking for?</span>
-                {searchOpen && (
-                  <motion.span
-                    style={{
-                      display: 'inline-block',
-                      width: 1.5,
-                      height: '0.85em',
-                      backgroundColor: 'rgba(139, 92, 246, 0.85)',
-                      marginLeft: 3,
-                      verticalAlign: 'middle',
-                      borderRadius: 1,
-                    }}
-                    animate={{ opacity: [1, 1, 0, 0] }}
-                    transition={{ duration: 0.9, repeat: Infinity, ease: 'linear', times: [0, 0.5, 0.5, 1] }}
-                  />
-                )}
-
                 {/* 2) Shimmer highlight — overlays the text without fading it out */}
                 {searchOpen && (
                   <span
