@@ -598,9 +598,9 @@ export const TabBar: React.FC = () => {
               width: searchOpen ? 352 : 44,
               boxShadow: searchOpen
                 ? [
-                    '0 0 0 1px rgba(50, 254, 196, 0.5), 0 0 16px rgba(50, 254, 196, 0.35)',
-                    '0 0 0 1px rgba(50, 254, 196, 0.85), 0 0 28px rgba(50, 254, 196, 0.65)',
-                    '0 0 0 1px rgba(50, 254, 196, 0.5), 0 0 16px rgba(50, 254, 196, 0.35)',
+                    '0 0 0 1px rgba(139, 92, 246, 0.45), 0 0 18px rgba(109, 40, 217, 0.3)',
+                    '0 0 0 1px rgba(139, 92, 246, 0.9), 0 0 32px rgba(109, 40, 217, 0.6)',
+                    '0 0 0 1px rgba(139, 92, 246, 0.45), 0 0 18px rgba(109, 40, 217, 0.3)',
                   ]
                 : 'inset 0 0 0 1px #323232',
             }}
@@ -716,6 +716,21 @@ export const TabBar: React.FC = () => {
               >
                 {/* 1) Base label — stays fully visible after type-in animation */}
                 <span>What are you looking for?</span>
+                {searchOpen && (
+                  <motion.span
+                    style={{
+                      display: 'inline-block',
+                      width: 1.5,
+                      height: '0.85em',
+                      backgroundColor: 'rgba(139, 92, 246, 0.85)',
+                      marginLeft: 3,
+                      verticalAlign: 'middle',
+                      borderRadius: 1,
+                    }}
+                    animate={{ opacity: [1, 1, 0, 0] }}
+                    transition={{ duration: 0.9, repeat: Infinity, ease: 'linear', times: [0, 0.5, 0.5, 1] }}
+                  />
+                )}
 
                 {/* 2) Shimmer highlight — overlays the text without fading it out */}
                 {searchOpen && (
