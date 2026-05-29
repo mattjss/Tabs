@@ -4,18 +4,18 @@ import { Shimmer } from './shimmer-text'
 
 /* ─── App data ─────────────────────────────────────────────────── */
 const recentApps = [
-  { id: 'spotify', label: 'Spotify', icon: '/icons/app-green.svg', color: '#10982b', stackIndex: 3, stackLeft: 27.43 },
-  { id: 'youtube', label: 'YouTube', icon: '/icons/app-red.svg', color: '#ee0000', stackIndex: 2, stackLeft: 13.71 },
-  { id: 'twitch', label: 'Twitch', icon: '/icons/app-purple.svg', color: '#7829df', stackIndex: 1, stackLeft: 0 },
+  { id: 'spotify', label: 'Spotify', icon: `${import.meta.env.BASE_URL}icons/app-green.svg`, color: '#10982b', stackIndex: 3, stackLeft: 27.43 },
+  { id: 'youtube', label: 'YouTube', icon: `${import.meta.env.BASE_URL}icons/app-red.svg`, color: '#ee0000', stackIndex: 2, stackLeft: 13.71 },
+  { id: 'twitch', label: 'Twitch', icon: `${import.meta.env.BASE_URL}icons/app-purple.svg`, color: '#7829df', stackIndex: 1, stackLeft: 0 },
 ]
 
 /* ─── Menu items ───────────────────────────────────────────────── */
 const menuItems = [
-  { id: 'home', label: 'Home', icon: '/icons/tab-home.svg', shortcut: 'H' },
-  { id: 'activity', label: 'Activity', icon: '/icons/tab-activity.svg', shortcut: 'A' },
-  { id: 'portfolio', label: 'Analytics', icon: '/icons/menu-portfolio.svg' },
-  { id: 'documents', label: 'Documents', icon: '/icons/menu-documents.svg' },
-  { id: 'move', label: 'Move', icon: '/icons/tab-move.svg', shortcut: 'M' },
+  { id: 'home', label: 'Home', icon: `${import.meta.env.BASE_URL}icons/tab-home.svg`, shortcut: 'H' },
+  { id: 'activity', label: 'Activity', icon: `${import.meta.env.BASE_URL}icons/tab-activity.svg`, shortcut: 'A' },
+  { id: 'portfolio', label: 'Analytics', icon: `${import.meta.env.BASE_URL}icons/menu-portfolio.svg` },
+  { id: 'documents', label: 'Documents', icon: `${import.meta.env.BASE_URL}icons/menu-documents.svg` },
+  { id: 'move', label: 'Move', icon: `${import.meta.env.BASE_URL}icons/tab-move.svg`, shortcut: 'M' },
 ]
 
 /* Menu item positions from Figma — all items are uniform 216px wide
