@@ -25,7 +25,8 @@ function App() {
           position: 'absolute',
           bottom: 44,
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: 'translateX(-50%) scale(0.8)',
+          transformOrigin: 'bottom center',
         }}>
           <TabBar />
         </div>
