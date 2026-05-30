@@ -4,13 +4,21 @@ function App() {
   return (
     <div style={{
       width: '100vw', height: '100vh',
-      backgroundColor: '#101010',
-      position: 'relative', overflow: 'hidden',
-      boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.06)',
-      borderRadius: 10,
+      background: '#101010',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
-      <div style={{ position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)' }}>
-        <TabBar />
+      <div style={{
+        position: 'relative',
+        width: 'var(--frame-sz)',
+        height: 'var(--frame-sz)',
+        border: '1px solid rgba(255,255,255,0.06)',
+        borderRadius: 10,
+        overflow: 'hidden',
+        background: '#101010',
+      }}>
+        <div style={{ position: 'absolute', bottom: 44, left: '50%', transform: 'translateX(-50%)' }}>
+          <TabBar />
+        </div>
       </div>
     </div>
   )
