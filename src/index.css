@@ -1,3 +1,7 @@
+:root { --frame-sz: 422px; }
+@media (min-width: 1440px) { :root { --frame-sz: 576px; } }
+@media (max-width: 480px)  { :root { --frame-sz: 322px; } }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
