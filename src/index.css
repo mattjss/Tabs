@@ -1,6 +1,6 @@
-:root { --frame-sz: 422px; }
-@media (min-width: 1440px) { :root { --frame-sz: 576px; } }
-@media (max-width: 480px)  { :root { --frame-sz: 322px; } }
+.project-frame { width: 422px; height: 422px; }
+@media (min-width: 1440px) { .project-frame { width: 576px; height: 576px; } }
+@media (max-width: 480px)  { .project-frame { width: 322px; height: 322px; } }
 
 @tailwind base;
 @tailwind components;
